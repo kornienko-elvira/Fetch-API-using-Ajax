@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn {
+    background-color: #F0614C;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.193em;
+    width: 100%;
+    height: 41px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+.btn:hover {
+    background-color: #FF816C;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+[type=reset], [type=submit], button, html [type=button] {
+    -webkit-appearance: button;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: -internal-light-dark-color(white, black);
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+.formContainer {
+    max-width: 800px;
+    width: 70%;
+    margin: 100px auto;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.small, small {
+    font-weight: 400;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+p {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+p.error {
+    color: #ca0000;
+    display: none;
+}
+
+</style>
+<head>
+    <script src="jquery-3.4.1.slim.min.js"></script>
+</head>
+<body>
+    <div class="formContainer">
+        <div class="small">
+            <input type="hidden" name="k" value="OzXeGckGKHQDTmwu5qSYzLLeiV6WJY_22GjyaUrxodtGh4Y2O_72ORClr4YgHHHatS8JSLPrZmpFZ_uyouG4X5df">
+            <div class="form-group">
+                <label for="api_key"><strong>API Key</strong></label>
+                <p class="error">Please enter a ApiKey.</p>
+                <input type="text" class="form-control" name="api_key" id="api_key" value="">
+                <small></small>
+            </div>
+            <div class="form-group">
+                <label for="surname"><strong>Surname</strong></label>
+                <p class="error">Please enter a surname.</p>
+                <input type="text" class="form-control" name="surname" id="surname" value="">
+                <small></small>
+            </div>
+            <div class="form-group">
+                <label for="forename"><strong>Forename</strong></label>
+                <p class="error">Please enter a forename.</p>
+                <input type="text" class="form-control" name="forename" id="forename" value="">
+                <small></small>
+            </div>
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <p class="error">Please enter a postcode.</p>
+                <input type="text" class="form-control" name="postcode" id="postcode" value="">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <p class="error">Please enter a address.</p>
+                <input type="text" class="form-control" name="address" id="address" value="">
+            </div>
+            <input type="submit" class="btn" id="btn-fetch" value="Fetch">
+        </div>
+    </div>
+</body>
+</html>
+<script>
+ $(document).ready(function() {
+
+    $('#btn-fetch').click(function() {
+        let apiKey = $('#api_key').val();
+        let surname = $('#surname').val();
+        let forename = $('#forename').val();
+        let postcode = $('#postcode').val();
+        let address = $('#address').val();
+        let valid = 1;
+        if(apiKey.length) {
+            $(".error").eq(0).css("display","none")
+        } else {
+            $(".error").eq(0).css("display","block")
+            valid = 0
+        }
+        if(surname.length) {
+            $(".error").eq(1).css("display","none")
+        } else {
+            $(".error").eq(1).css("display","block")
+            valid = 0
+        }
+        if(forename.length) {
+            $(".error").eq(2).css("display","none")
+        } else {
+            $(".error").eq(2).css("display","block")
+            valid = 0
+        }
+        if(postcode.length) {
+            $(".error").eq(3).css("display","none")
+        } else {
+            $(".error").eq(3).css("display","block")
+            valid = 0
+        }
+        if(address.length) {
+            $(".error").eq(4).css("display","none")
+        } else {
+            $(".error").eq(4).css("display","block")
+            valid = 0
+        }
+        
+        if(valid) {
+            var base_link = 'http://api.t2a.io/rest?';
+
+            console.log("Surname:", surname, "    Forename:", forename, "   Postcode:", postcode, "   Address:", address)
+            fetch(base_link + "method=javascript_key" + "&api_key=" + apiKey + "&lifetime_minutes=1" + "&domain=t2a.co")
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(text) {
+                console.log("Fetch Javascript Key Result:", text)
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(text,"text/xml");
+
+                javascriptKey = xmlDoc.getElementsByTagName("javascript_key")[0].childNodes[0].nodeValue;
+                if(javascriptKey){
+                    console.log("Javascript_Key:", javascriptKey)
+                    fetch(base_link + "method=person_verify" + "&javascript_key=" + javascriptKey + "&surname=" + surname + "&forename=" + forename + "&postcode=" + postcode + "&addr1=" + address)
+                    .then(function(response) {
+                        return response.text();
+                    })
+                    .then(function(text) {
+                        alert("Result :\n" + text)
+                    });
+                } else {
+                    alert("Failed to fetch javascript_key. Please enter correct api_key :\n" + text)
+                }
+            });
+        }
+    })
+})
+</script>
